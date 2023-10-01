@@ -28,6 +28,7 @@
 - Git Bash
 - Visual Studio Code
 - Yarn
+- Postman
 
 ### History of development:
 
@@ -49,3 +50,5 @@
 4) Created initial folder structure using Feature-based pattern;
 
 5) Started inital documentation using this README.md file and added a checklist of requirements;
+
+6) Added sass library and commited and merge actual branch to master
