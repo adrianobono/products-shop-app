@@ -1,8 +1,6 @@
 # Product Shop App
 
-
-
-### Checklist Specifications: 
+### Checklist Specifications
 
 - [X] Application developed using React.
 
@@ -22,7 +20,7 @@
 
 - [ ] Application must use a library to make payments, such as Stripe.
 
-### Tools used for development:
+### Tools used for development
 
 - NodeJs
 - Git Bash
@@ -30,7 +28,7 @@
 - Yarn
 - Postman
 
-### History of development:
+### History of development
 
 1) Created a react app (CRA) using TypeScript:
 
@@ -52,3 +50,9 @@
 5) Started inital documentation using this README.md file and added a checklist of requirements;
 
 6) Added sass library and commited and merge actual branch to master
+
+7) Update local master and checkout to new branch to implement minimal api first for products CRUD
+
+8) Added online Json-Server API for products, reference links   <https://github.com/kitloong/json-server-vercel> and <https://www.youtube.com/watch?v=A--aYRbzKdU>
+
+9) Added initial pages to use routes 
