@@ -1,0 +1,54 @@
+.product-card__item {
+    display: grid;
+    height: 430px;
+    border: 2px solid rgb(235, 231, 231);
+    border-radius: 5px;
+    padding: 15px;
+    align-items: center;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto repeat(2, 1fr) auto;
+    align-self: center;
+    grid-template-areas:
+        "edit edit"
+        "image image"
+        "name price"
+        "buy buy";
+
+    img {
+        grid-area: image;
+        max-height: 300px;
+        max-width: 280px;
+    }
+
+    p {
+        grid-area: name;
+    }
+    span {
+        grid-area: price;
+    }
+
+    :nth-child(1) {
+        grid-area: edit;
+        padding: 10px;
+        color: white;
+        border: 0;
+        width: 3rem;
+        border-radius: 5px;
+        background-color: gray;
+        cursor: pointer;
+    }
+
+    :nth-child(5) {
+        grid-area: buy;
+        padding: 10px;
+        color: white;
+        border-radius: 5px;
+        background-color: green;
+        cursor: pointer;
+    }
+}
+
+.product-card__button-edit {
+    position: relative;
+    right: 0;
+}
