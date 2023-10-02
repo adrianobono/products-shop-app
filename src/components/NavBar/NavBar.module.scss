@@ -1,0 +1,26 @@
+.nav-bar__wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 40px;
+    width: 100%;
+    background-color: black;
+    color: white;
+}
+
+.nav-bar__list {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    align-items: center;
+}
+
+.nav-bar__item {
+    display: block;
+    text-decoration: none;
+    margin-top: -8px;
+    a {
+        text-decoration: none;
+        color: white;
+    }
+}
