@@ -5,6 +5,16 @@
     background-color: rgb(202, 202, 202);
 }
 
+.cart-container__list {
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-container__item {
+    width: 100%;
+    text-decoration: none;
+}
+
 @media only screen and (max-width: 480px) {
     .cart-container__wrapper {
         width: 90vw;
