@@ -22,9 +22,16 @@ export const ProductCard = ({ product }: ProductsListProps) => {
     sum >= 0 && setQuantity(sum);
   };
 
+  const handleCrud = () => {};
+
   return (
     <li className={styles["product-card__item"]} key={product.id}>
-      <Button className={styles["product-card__button-edit"]}>Edit</Button>
+      <span className={styles["product-card__buttons-crud"]}>
+        <Button className={styles["product-card__button-delete"]}>
+          Delete
+        </Button>
+        <Button className={styles["product-card__button-edit"]}>Edit</Button>
+      </span>
       <img src={product.srcImage} alt={product.altImage} />
       <p>{product.title}</p>
       <span>${product.value}</span>

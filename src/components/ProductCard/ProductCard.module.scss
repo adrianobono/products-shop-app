@@ -29,12 +29,9 @@
 
     :nth-child(1) {
         grid-area: edit;
-        padding: 10px;
         color: white;
         border: 0;
-        width: 3rem;
         border-radius: 5px;
-        background-color: gray;
         cursor: pointer;
     }
 
@@ -84,11 +81,29 @@
 
 .product-card__button-edit {
     position: relative;
+    border: 0;
+    padding: 10px;
+    right: 0;
+}
+
+.product-card__button-delete {
+    position: relative;
+    background-color: red;
+    padding: 10px;
+
     right: 0;
 }
 
 .product-card__buttons-shop {
     grid-area: buy;
+    position: relative;
+    right: 0;
+}
+
+.product-card__buttons-crud {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
     position: relative;
     right: 0;
 }
