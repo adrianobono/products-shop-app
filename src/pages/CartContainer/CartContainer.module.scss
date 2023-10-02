@@ -1,0 +1,12 @@
+.cart-container__wrapper {
+    margin: 60px auto;
+    display: flex;
+    width: 70vw;
+    background-color: rgb(202, 202, 202);
+}
+
+@media only screen and (max-width: 480px) {
+    .cart-container__wrapper {
+        width: 90vw;
+    }
+}
