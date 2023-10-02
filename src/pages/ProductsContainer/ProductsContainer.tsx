@@ -1,23 +1,12 @@
 import { useEffect, useState } from "react";
 import { getProducts } from "../../services/DataProductsSevices";
+import { ProductsList } from "../../components/ProductstList";
 
 function ProductsContainer() {
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    getProducts().then((data) => {
-      setProducts(data);
-    });
-  }, []);
-
   return (
-    <div>
-      List
-      <ul>
-        {products.map((item: any) => (
-          <li>Product: {item.title}</li>
-        ))}
-      </ul>
-    </div>
+    <section>
+      <ProductsList />
+    </section>
   );
 }
 

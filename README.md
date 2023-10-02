@@ -6,7 +6,7 @@
 
 - [ ] Application must use a state management library, such as Zustand.
 
-- [ ] Application must use a routing library, such as React Router.
+- [X] Application must use a routing library, such as React Router.
 
 - [ ] Application must use a form management library, such as Formik or React Hook Form.
 
@@ -16,7 +16,7 @@
 
 - [ ] Application must have at least one unit test for each component.
 
-- [ ] Application must have an API to obtain and update product data.
+- [X] Application must have an API to obtain and update product data.
 
 - [ ] Application must use a library to make payments, such as Stripe.
 
@@ -51,8 +51,12 @@
 
 6) Added sass library and commited and merge actual branch to master
 
-7) Update local master and checkout to new branch to implement minimal api first for products CRUD
+7) Updated master branch and checkout to new branch to implement minimal api first for products CRUD
 
 8) Added online Json-Server API for products, reference links   <https://github.com/kitloong/json-server-vercel> and <https://www.youtube.com/watch?v=A--aYRbzKdU>
 
-9) Added initial pages to use routes 
+9) Added initial pages to use routes
+
+10) Finalized api evaluate, added initial list on product page and simple routes to pages
+
+11) Updated master branch and checkout to new branch to implement components and store

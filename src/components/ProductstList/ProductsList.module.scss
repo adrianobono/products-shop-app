@@ -1,0 +1,10 @@
+// style to  display control items of products
+.products-list__wrapper {
+    margin-top: 50px;
+    display: flex;
+    padding: 0;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    column-gap: 20px;
+    row-gap: 40px;
+}
