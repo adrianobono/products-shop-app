@@ -1,6 +1,5 @@
 import { AxiosError } from "axios";
 import { productsApi } from "../api";
-
 export const getProducts = async (): Promise<any> => {
   try {
     const { data } = await productsApi.get("/products");

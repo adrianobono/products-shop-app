@@ -8,14 +8,12 @@ interface ProductsListProps {
 
 export const ProductCard = ({ product }: ProductsListProps) => {
   return (
-    <>
-      <li className={styles["product-card__item"]} key={product.id}>
-        <Button className={styles["product-card__button-edit"]}>Edit</Button>
-        <img src={product.srcImage} alt={product.altImage} />
-        <p>{product.title}</p>
-        <span>${product.value}</span>
-        <Button>Add to cart</Button>
-      </li>
-    </>
+    <li className={styles["product-card__item"]} key={product.id}>
+      <Button className={styles["product-card__button-edit"]}>Edit</Button>
+      <img src={product.srcImage} alt={product.altImage} />
+      <p>{product.title}</p>
+      <span>${product.value}</span>
+      <Button>Add to cart</Button>
+    </li>
   );
 };
