@@ -6,11 +6,11 @@ import { Checkout } from "../../components/Checkout";
 
 function CartContainer() {
   const { cart } = useCartStore();
-  let total = 0;
+  let total: number = 0;
   const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
 
   const options: StripeElementsOptionsMode = {
-    amount: 1099,
+    amount: 1,
     mode: "payment",
     currency: "usd",
   };
@@ -19,17 +19,19 @@ function CartContainer() {
       Cart
       <ul className={styles["cart-container__list"]}>
         {cart?.map((item) => {
-          total += item.value;
-          options.amount = Math.floor(total);
+          total += Math.floor(item.value * item.quantity * 100);
+          options.amount = total;
           return (
             <li className={styles["cart-container__item"]}>
               <span>Product: {item.title}</span>
               <span>Value: {item.value}</span>
+              <span>Quantity: {item.quantity}</span>
+              <span>Total: {item.quantity * item.value}</span>
             </li>
           );
         })}
       </ul>
-      Order Total: {total.toFixed(2)}
+      Order Total: {(total / 100).toFixed(2)}
       <Elements stripe={stripePromise} options={options}>
         <Checkout />
       </Elements>

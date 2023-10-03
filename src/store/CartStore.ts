@@ -8,19 +8,20 @@ type Item = {
   description: string;
   srcImage: string;
   altImage: string;
-  quantity?: number;
-  total?: number;
+  quantity: number;
+  stock: number;
 };
 
-const addFilter = (cart: any, product: any) => {
+const updateCard = (cart: any, product: Item, value: number) => {
   const tempProduct = cart.find((item: any) => item.id === product.id);
 
   if (tempProduct) {
     const tempCart = cart.map((cartItem: Item) => {
       if (cartItem.id === product.id) {
-        let newAmount: number = cartItem.value + product.value;
-
-        return { ...cartItem, ...{ value: newAmount } };
+        return {
+          ...cartItem,
+          ...{ quantity: cartItem.quantity + value },
+        };
       } else {
         return cartItem;
       }
@@ -37,7 +38,7 @@ type CartStore = {
   cart: Item[];
   setProducts: (items: Item[]) => void;
   addToCart: (item: Item) => void;
-  removeFromCart: (id: number) => void;
+  removeFromCart: (item: Item) => void;
 };
 
 export const useCartStore = create(
@@ -45,9 +46,9 @@ export const useCartStore = create(
     (set) => ({
       cart: [],
       products: [],
-      addToCart: (item) => set((state) => addFilter(state.cart, item)),
-      removeFromCart: (id) =>
-        set((state) => ({ cart: state.cart.filter((item) => item.id !== id) })),
+      addToCart: (item) => set((state) => updateCard(state.cart, item, 1)),
+      removeFromCart: (item) =>
+        set((state) => updateCard(state.cart, item, -1)),
       setProducts: (products) => set(() => ({ products })),
     }),
     {
