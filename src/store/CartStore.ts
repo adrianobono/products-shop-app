@@ -16,6 +16,9 @@ const updateCard = (cart: any, product: Item, value: number) => {
   const tempProduct = cart.find((item: any) => item.id === product.id);
 
   if (tempProduct) {
+    if (value === -1 && product.quantity === 0)
+      return { cart: cart.filter((item: Item) => item.id !== product.id) };
+
     const tempCart = cart.map((cartItem: Item) => {
       if (cartItem.id === product.id) {
         return {

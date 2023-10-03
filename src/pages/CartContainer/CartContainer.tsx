@@ -20,7 +20,7 @@ function CartContainer() {
       <ul className={styles["cart-container__list"]}>
         {cart?.map((item) => {
           total += Math.floor(item.value * item.quantity * 100);
-          options.amount = total;
+          options.amount = total !== 0 ? total : 1;
           return (
             <li className={styles["cart-container__item"]}>
               <span>Product: {item.title}</span>
@@ -32,9 +32,11 @@ function CartContainer() {
         })}
       </ul>
       Order Total: {(total / 100).toFixed(2)}
-      <Elements stripe={stripePromise} options={options}>
-        <Checkout />
-      </Elements>
+      {cart.length > 0 && (
+        <Elements stripe={stripePromise} options={options}>
+          <Checkout />
+        </Elements>
+      )}
     </div>
   );
 }
