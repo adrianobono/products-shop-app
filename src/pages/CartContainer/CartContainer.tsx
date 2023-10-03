@@ -26,7 +26,7 @@ function CartContainer() {
               <span>Product: {item.title}</span>
               <span>Value: {item.value}</span>
               <span>Quantity: {item.quantity}</span>
-              <span>Total: {item.quantity * item.value}</span>
+              <span>Total: {(item.quantity * item.value).toFixed(2)}</span>
             </li>
           );
         })}

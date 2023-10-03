@@ -4,7 +4,7 @@
 
 - [X] Application developed using React.
 
-- [ ] Application must use a state management library, such as Zustand.
+- [X] Application must use a state management library, such as Zustand.
 
 - [X] Application must use a routing library, such as React Router.
 

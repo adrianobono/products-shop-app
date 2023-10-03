@@ -10,7 +10,7 @@ export const ProductsList = () => {
   return (
     <ul className={styles["products-list__wrapper"]}>
       {productsList?.map((item: any) => (
-        <ProductCard product={item} />
+        <ProductCard product={item} products={productsList} />
       ))}
     </ul>
   );
