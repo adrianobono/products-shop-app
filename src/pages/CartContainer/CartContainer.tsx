@@ -2,7 +2,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { useCartStore } from "../../store/CartStore";
 import styles from "./CartContainer.module.scss";
 import { StripeElementsOptionsMode, loadStripe } from "@stripe/stripe-js";
-import { CartCheckout } from "../../components/CartCheckout";
+import { Checkout } from "../../components/Checkout";
 
 function CartContainer() {
   const { cart } = useCartStore();
@@ -31,7 +31,7 @@ function CartContainer() {
       </ul>
       Order Total: {total.toFixed(2)}
       <Elements stripe={stripePromise} options={options}>
-        <CartCheckout />
+        <Checkout />
       </Elements>
     </div>
   );

@@ -5,7 +5,7 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 
-export const CartCheckout = () => {
+export const Checkout = () => {
   const stripe = useStripe();
   const elements = useElements();
 

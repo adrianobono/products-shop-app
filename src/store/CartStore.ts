@@ -39,13 +39,11 @@ type CartStore = {
   removeFromCart: (id: number) => void;
 };
 
-export const useCartStore = create<CartStore>((set) => {
-  return {
-    cart: [],
-    products: [],
-    addToCart: (item) => set((state) => addFilter(state.cart, item)),
-    removeFromCart: (id) =>
-      set((state) => ({ cart: state.cart.filter((item) => item.id !== id) })),
-    setProducts: (products) => set(() => ({ products })),
-  };
-});
+export const useCartStore = create<CartStore>((set) => ({
+  cart: [],
+  products: [],
+  addToCart: (item) => set((state) => addFilter(state.cart, item)),
+  removeFromCart: (id) =>
+    set((state) => ({ cart: state.cart.filter((item) => item.id !== id) })),
+  setProducts: (products) => set(() => ({ products })),
+}));
