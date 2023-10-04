@@ -12,13 +12,14 @@
 .list__form-edit {
     display: flex;
     flex-direction: column;
-    row-gap: 15px;
+    justify-content: center;
 
     label {
         font-size: 0.8rem;
     }
     input {
         padding: 10px;
+        margin-bottom: 20px;
     }
     input[type="submit"] {
         border: 0;
@@ -26,5 +27,10 @@
         color: white;
         background-color: rgb(34, 139, 2);
         width: 50%;
+        margin-top: 20px;
+        align-self: center;
+    }
+    textarea {
+        height: 60px;
     }
 }

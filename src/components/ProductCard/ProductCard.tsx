@@ -26,7 +26,6 @@ export const ProductCard = ({ products, product }: ProductsListProps) => {
     value === 1 && addToCart(product);
 
     sum >= 0 && setQuantity(sum);
-    console.log(cart);
   };
 
   const itemCart = cart.filter((item: any) => item.id === product.id);

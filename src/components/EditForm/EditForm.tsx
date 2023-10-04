@@ -7,10 +7,12 @@ interface EditFormProps {
   item: ProductsDTO;
 }
 
-// export const ProductCard = ({ products, product }: ProductsListProps) => {
-
 export const EditForm = ({ item }: EditFormProps) => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   return (
     <div className={styles["list__form-wrapper"]}>
       <form
@@ -20,12 +22,19 @@ export const EditForm = ({ item }: EditFormProps) => {
       >
         <label htmlFor="title">Product Title</label>
         <input
-          {...register("title")}
           id="title"
+          aria-invalid={errors.title ? "true" : "false"}
+          {...register("title", { required: true, minLength: 2 })}
           placeholder="Product title"
           defaultValue={item.title}
           required
         />
+        {errors.title && errors.title.type === "minLength" && (
+          <span>Max length exceeded</span>
+        )}
+        {errors.title && errors.title.type === "minLength" && (
+          <span role="alert">Min length is 2</span>
+        )}
         <label htmlFor="value">Product price</label>
         <input
           id="value"
@@ -52,7 +61,9 @@ export const EditForm = ({ item }: EditFormProps) => {
           required
         />
 
+        <label htmlFor="desciption">Product description</label>
         <textarea
+          id="description"
           {...register("description")}
           placeholder="Product Description"
           defaultValue={item.description}

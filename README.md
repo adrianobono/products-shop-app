@@ -8,17 +8,17 @@
 
 - [X] Application must use a routing library, such as React Router.
 
-- [ ] Application must use a form management library, such as Formik or React Hook Form.
+- [X] Application must use a form management library, such as Formik or React Hook Form.
 
 - [ ] Application must use a form validation library, such as React-hook-form.
 
-- [ ] Application must use React-Query to share data between components via cache, hydrate data,control states with queries, loading, refetch, invalidQueries
+- [X] Application must use React-Query to share data between components via cache, hydrate data,control states with queries, loading, refetch, invalidQueries
 
 - [ ] Application must have at least one unit test for each component.
 
 - [X] Application must have an API to obtain and update product data.
 
-- [ ] Application must use a library to make payments, such as Stripe.
+- [] Application must use a library to make payments, such as Stripe.
 
 ### Tools used for development
 

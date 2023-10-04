@@ -36,7 +36,11 @@ export const ProductMangement = () => {
           </li>
         ))}
       </ul>
-      <EditModal hasCloseBtn={true} isOpen={edit} onClose={() => alert(1)}>
+      <EditModal
+        hasCloseBtn={true}
+        isOpen={edit}
+        onClose={() => setEdit(!edit)}
+      >
         <EditForm item={products[0]} />
       </EditModal>
     </div>

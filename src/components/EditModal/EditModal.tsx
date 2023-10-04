@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+import { BiWindowClose } from "react-icons/bi";
+import { Button } from "../Button";
 
 interface ModalProps {
   isOpen: boolean;
@@ -48,9 +50,9 @@ export const EditModal: React.FC<ModalProps> = ({
   return (
     <dialog ref={modalRef} onKeyDown={handleKeyDown} className="modal">
       {hasCloseBtn && (
-        <button className="modal-close-btn" onClick={handleCloseModal}>
-          Close
-        </button>
+        <Button onClick={handleCloseModal}>
+          <BiWindowClose size={24} />
+        </Button>
       )}
       {children}
     </dialog>
