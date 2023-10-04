@@ -2,9 +2,14 @@ import { useCartStore } from "../../store/CartStore";
 import { Button } from "../Button";
 import styles from "./ProductsManagement.module.scss";
 import { BiPencil, BiTrash } from "react-icons/bi";
+import { useState } from "react";
+import { EditModal } from "../EditModal";
+import { EditForm } from "../EditForm";
 
 export const ProductMangement = () => {
+  const [edit, setEdit] = useState(false);
   const { products } = useCartStore();
+
   return (
     <div className={styles["wrapper"]}>
       <div className={styles["title"]}>Products Management</div>
@@ -21,7 +26,7 @@ export const ProductMangement = () => {
             <span>{item.title}</span>
             <span>{item.value}</span>
             <span>
-              <Button>
+              <Button onClick={() => setEdit(!edit)}>
                 <BiPencil size={20} />
               </Button>
               <Button>
@@ -31,6 +36,9 @@ export const ProductMangement = () => {
           </li>
         ))}
       </ul>
+      <EditModal hasCloseBtn={true} isOpen={edit} onClose={() => alert(1)}>
+        <EditForm item={products[0]} />
+      </EditModal>
     </div>
   );
 };

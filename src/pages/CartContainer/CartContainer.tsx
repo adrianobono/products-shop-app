@@ -22,12 +22,14 @@ function CartContainer() {
           total += Math.floor(item.value * item.quantity * 100);
           options.amount = total !== 0 ? total : 1;
           return (
-            <li className={styles["cart-container__item"]}>
-              <span>Product: {item.title}</span>
-              <span>Value: {item.value}</span>
-              <span>Quantity: {item.quantity}</span>
-              <span>Total: {(item.quantity * item.value).toFixed(2)}</span>
-            </li>
+            total > 0 && (
+              <li className={styles["cart-container__item"]}>
+                <span>Product: {item.title}</span>
+                <span>Value: {item.value}</span>
+                <span>Quantity: {item.quantity}</span>
+                <span>Total: {(item.quantity * item.value).toFixed(2)}</span>
+              </li>
+            )
           );
         })}
       </ul>

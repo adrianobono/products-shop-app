@@ -48,26 +48,56 @@
     width: 100%;
     padding: 5px;
     overflow: hidden;
+
     span {
         overflow: hidden;
     }
 
-    :last-child {
+    :nth-child(4) {
         text-align: right;
+
+        button {
+            background-color: rgb(2, 149, 247);
+            width: 32px;
+            height: 32px;
+            padding: 5px;
+            color: white;
+            border-radius: 4px;
+            margin-left: 10px;
+            margin: 5px 10px px 0px;
+        }
+
+        button:last-child {
+            background-color: rgb(231, 18, 18);
+        }
     }
 
-    button {
-        background-color: rgb(2, 149, 247);
-        width: 32px;
-        height: 32px;
-        padding: 5px;
+    .list__form-wrapper {
+        margin-top: 10px;
         color: white;
-        border-radius: 4px;
-        margin-left: 10px;
-        margin: 5px 10px px 0px;
+        width: 360px;
+        padding: 15px;
+        background-color: rgb(32, 32, 32);
+        border-radius: 5px;
     }
 
-    button:last-child {
-        background-color: rgb(231, 18, 18);
+    .list__form-edit {
+        display: flex;
+        flex-direction: column;
+        row-gap: 15px;
+
+        label {
+            font-size: 0.8rem;
+        }
+        input {
+            padding: 10px;
+        }
+        input[type="submit"] {
+            border: 0;
+            border-radius: 5px;
+            color: white;
+            background-color: rgb(34, 139, 2);
+            width: 50%;
+        }
     }
 }

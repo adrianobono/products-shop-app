@@ -23,10 +23,8 @@ export const deleteProduct = async (id: number): Promise<any> => {
   }
 };
 
-export const patchProduct = async (
-  id: number,
-  product: ProductsDTO
-): Promise<any> => {
+export const patchProduct = async (id: number, product: any): Promise<any> => {
+  product.value = Number(product.value);
   try {
     const { data } = await productsApi.patch(`/products/${id}`, product);
     return data;
