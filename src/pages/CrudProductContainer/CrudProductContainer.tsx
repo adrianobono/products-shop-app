@@ -1,5 +1,11 @@
-function NewProductContainer() {
-  return <section>Create new Product</section>;
+import { ProductMangement } from "../../components/ProductsManagement";
+
+function CrudProductContainer() {
+  return (
+    <section>
+      <ProductMangement />
+    </section>
+  );
 }
 
-export default NewProductContainer;
+export default CrudProductContainer;

@@ -1,17 +1,16 @@
 import { AxiosError } from "axios";
 import { productsApi } from "../api";
 import { ProductsDTO } from "../types/dto";
+import { useQuery } from "@tanstack/react-query";
 
-export const getProducts = async (): Promise<any> => {
-  try {
-    const { data } = await productsApi.get("/products");
-    return data;
-  } catch (error) {
-    const err = error as AxiosError;
-    console.log(err.message);
-    return [];
-  }
-};
+export async function getProducts() {
+  const { data } = await productsApi.get("/products");
+  return data;
+}
+
+export function useFetchProducts() {
+  return useQuery(["products"], () => getProducts());
+}
 
 export const deleteProduct = async (id: number): Promise<any> => {
   try {
@@ -24,10 +23,8 @@ export const deleteProduct = async (id: number): Promise<any> => {
   }
 };
 
-export const patchProduct = async (
-  id: number,
-  product: ProductsDTO
-): Promise<any> => {
+export const patchProduct = async (id: number, product: any): Promise<any> => {
+  product.value = Number(product.value);
   try {
     const { data } = await productsApi.patch(`/products/${id}`, product);
     return data;

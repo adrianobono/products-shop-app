@@ -7,6 +7,6 @@ export class ProductsDTO {
   "description": string;
   "srcImage": string;
   "altImage": string;
-  "quantity"?: number;
-  "total"?: number;
+  "quantity": number;
+  "stock": number;
 }

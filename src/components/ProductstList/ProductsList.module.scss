@@ -1,10 +1,18 @@
 // style to  display control items of products
 .products-list__wrapper {
-    margin-top: 50px;
+    margin-top: 60px;
     display: flex;
     padding: 0;
     justify-content: space-around;
     flex-wrap: wrap;
     column-gap: 20px;
     row-gap: 40px;
+}
+
+@media only screen and (min-width: 720px) {
+    .products-list__wrapper {
+        margin: 60px auto;
+        width: 90%;
+        justify-content: space-evenly;
+    }
 }
