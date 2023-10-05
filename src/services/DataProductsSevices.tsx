@@ -3,7 +3,7 @@ import { productsApi } from "../api";
 import { ProductsDTO } from "../types/dto";
 import { useQuery } from "@tanstack/react-query";
 
-export async function getProducts() {
+async function getProducts() {
   const { data } = await productsApi.get("/products");
   return data;
 }
@@ -12,7 +12,7 @@ export function useFetchProducts() {
   return useQuery(["products"], () => getProducts());
 }
 
-export const deleteProduct = async (id: number): Promise<any> => {
+export const deleteProduct = async (id: any): Promise<any> => {
   try {
     const { data } = await productsApi.delete(`/products/${id}`);
     return data;
@@ -23,7 +23,7 @@ export const deleteProduct = async (id: number): Promise<any> => {
   }
 };
 
-export const patchProduct = async (id: number, product: any): Promise<any> => {
+export const patchProduct = async (id: any, product: any): Promise<any> => {
   product.value = Number(product.value);
   try {
     const { data } = await productsApi.patch(`/products/${id}`, product);
@@ -35,12 +35,10 @@ export const patchProduct = async (id: number, product: any): Promise<any> => {
   }
 };
 
-export const postProduct = async (
-  id: number,
-  product: ProductsDTO
-): Promise<any> => {
+export const postProduct = async (product: ProductsDTO): Promise<any> => {
+  delete product["id"];
   try {
-    const { data } = await productsApi.post(`/products/${id}`, product);
+    const { data } = await productsApi.post(`/products/`, product);
     return data;
   } catch (error) {
     const err = error as AxiosError;
