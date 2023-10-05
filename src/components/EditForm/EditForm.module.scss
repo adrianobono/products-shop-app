@@ -7,6 +7,18 @@
     padding: 15px;
     background-color: rgb(32, 32, 32);
     border-radius: 5px;
+
+    button {
+        cursor: pointer;
+    }
+
+    span {
+        color: red;
+        font-size: 0.8rem;
+        position: relative;
+        margin: -20px 0 20px 0;
+        font-weight: 400;
+    }
 }
 
 .list__form-edit {
@@ -29,6 +41,11 @@
         width: 50%;
         margin-top: 20px;
         align-self: center;
+        cursor: pointer;
+    }
+    input[type="submit"]:disabled {
+        background-color: gray;
+        cursor: default;
     }
     textarea {
         height: 60px;

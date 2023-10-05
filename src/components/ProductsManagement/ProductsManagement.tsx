@@ -4,15 +4,24 @@ import styles from "./ProductsManagement.module.scss";
 import { BiPencil, BiTrash } from "react-icons/bi";
 import { useState } from "react";
 import { EditModal } from "../EditModal";
-import { EditForm } from "../EditForm";
 
 export const ProductMangement = () => {
   const [edit, setEdit] = useState(false);
-  const { products } = useCartStore();
+  const { products, setEditId } = useCartStore();
 
+  const handleEditModal = (index: number) => {
+    setEditId(index);
+    setEdit(!edit);
+  };
+
+  const handleNewProduct = () => {
+    setEditId(-2);
+    setEdit(!edit);
+  };
   return (
     <div className={styles["wrapper"]}>
       <div className={styles["title"]}>Products Management</div>
+      <Button onClick={() => handleNewProduct()}>New product</Button>
       <ul className={styles["list__wrapper"]}>
         <li className={styles["list__header"]}>
           <span>Id</span>
@@ -20,13 +29,13 @@ export const ProductMangement = () => {
           <span>Price</span>
           <span>Actions</span>
         </li>
-        {products.map((item) => (
-          <li className={styles["list__item"]}>
+        {products.map((item, index) => (
+          <li key={item.id} className={styles["list__item"]}>
             <span>{item.id}</span>
             <span>{item.title}</span>
             <span>{item.value}</span>
             <span>
-              <Button onClick={() => setEdit(!edit)}>
+              <Button onClick={() => handleEditModal(index)}>
                 <BiPencil size={20} />
               </Button>
               <Button>
@@ -36,13 +45,15 @@ export const ProductMangement = () => {
           </li>
         ))}
       </ul>
-      <EditModal
-        hasCloseBtn={true}
-        isOpen={edit}
-        onClose={() => setEdit(!edit)}
-      >
-        <EditForm item={products[0]} />
-      </EditModal>
+      {edit && (
+        <EditModal
+          hasCloseBtn={true}
+          isOpen={edit}
+          onClose={() => setEdit(!edit)}
+        >
+          Edit form
+        </EditModal>
+      )}
     </div>
   );
 };

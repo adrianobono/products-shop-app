@@ -1,0 +1,8 @@
+.edit-modal__wrapper {
+    display: flex;
+    flex-direction: column;
+
+    button:first-child {
+        text-align: right;
+    }
+}

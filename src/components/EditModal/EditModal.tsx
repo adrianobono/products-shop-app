@@ -1,6 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { BiWindowClose } from "react-icons/bi";
 import { Button } from "../Button";
+import styles from "./EditModal.module.scss";
+import { useCartStore } from "../../store/CartStore";
+import { EditForm } from "../EditForm";
 
 interface ModalProps {
   isOpen: boolean;
@@ -15,8 +18,13 @@ export const EditModal: React.FC<ModalProps> = ({
   onClose,
   children,
 }) => {
+  const { editId, products } = useCartStore();
   const [isModalOpen, setModalOpen] = useState(isOpen);
   const modalRef = useRef<HTMLDialogElement | null>(null);
+
+  useEffect(() => {
+    editId === -1 && handleCloseModal();
+  }, [editId]);
 
   const handleCloseModal = () => {
     if (onClose) {
@@ -48,13 +56,17 @@ export const EditModal: React.FC<ModalProps> = ({
   }, [isModalOpen]);
 
   return (
-    <dialog ref={modalRef} onKeyDown={handleKeyDown} className="modal">
-      {hasCloseBtn && (
-        <Button onClick={handleCloseModal}>
-          <BiWindowClose size={24} />
-        </Button>
-      )}
-      {children}
+    <dialog ref={modalRef} onKeyDown={handleKeyDown}>
+      <div className={styles["edit-modal__wrapper"]}>
+        {hasCloseBtn && (
+          <Button onClick={handleCloseModal}>
+            <BiWindowClose size={24} />
+          </Button>
+        )}
+        {isModalOpen && editId !== -1 && (
+          <EditForm item={editId < 0 ? products[0] : products[editId]} />
+        )}
+      </div>
     </dialog>
   );
 };

@@ -12,20 +12,16 @@ interface ProductsListProps {
 
 export const ProductCard = ({ products, product }: ProductsListProps) => {
   const { cart, addToCart, removeFromCart, setProducts } = useCartStore();
-  const [quantity, setQuantity] = useState(0);
 
   useEffect(() => {
     setProducts(products);
   }, []);
 
-  const handleSetQuantity = (value: number) => {
-    let sum = quantity + value;
-    product.quantity = sum;
+  const handleSetQuantity = (cartQty: number, value: number) => {
+    product.quantity = !cartQty ? 1 : +cartQty + value;
 
     value === -1 && removeFromCart(product);
     value === 1 && addToCart(product);
-
-    sum >= 0 && setQuantity(sum);
   };
 
   const itemCart = cart.filter((item: any) => item.id === product.id);
@@ -38,12 +34,17 @@ export const ProductCard = ({ products, product }: ProductsListProps) => {
       <span className={styles["product-card__buttons-shop"]}>
         <Button
           disabled={itemCart[0]?.quantity === 0 || !itemCart[0]}
-          onClick={() => handleSetQuantity(-1)}
+          onClick={() => handleSetQuantity(itemCart[0]?.quantity, -1)}
         >
           Remove
         </Button>
         <span>{itemCart[0]?.quantity | 0}</span>
-        <Button onClick={() => handleSetQuantity(1)}>Add to cart</Button>
+        <Button
+          disabled={product.quantity >= product.stock}
+          onClick={() => handleSetQuantity(itemCart[0]?.quantity, 1)}
+        >
+          Add to cart
+        </Button>
       </span>
     </li>
   );
