@@ -14,12 +14,7 @@ interface EditFormProps {
 }
 
 export const EditForm = ({ item }: EditFormProps) => {
-  const {
-    setEditId,
-    editId,
-    setProducts,
-    editItem: ProductsDTO,
-  } = useCartStore();
+  const { setEditId, editId, setProducts } = useCartStore();
   const {
     register,
     handleSubmit,
