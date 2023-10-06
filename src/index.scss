@@ -2,7 +2,8 @@
 
 :root {
   --orange: #f66139;
-  --green: #56b78c;
+  --red: rgb(243, 43, 76);
+  --green: rgb(0, 128, 0);
 }
 
 * {
@@ -11,6 +12,7 @@
 
 button {
   cursor: pointer;
+  border: 0;
 }
 
 body {

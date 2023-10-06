@@ -64,14 +64,14 @@ export const EditModal: React.FC<ModalProps> = ({
       <div className={styles["edit-modal__wrapper"]}>
         {hasCloseBtn && (
           <Button onClick={handleCloseModal}>
-            <BiWindowClose size={24} />
+            <BiWindowClose size={32} />
           </Button>
         )}
         {isModalOpen && editId !== -1 && (
           <EditForm item={editId < 0 ? products[0] : products[editId]} />
         )}
         {/* return/show internal content of modal if exists*/}
-        {editId === -2 && children}
+        {editId === -3 && children}
       </div>
     </dialog>
   );

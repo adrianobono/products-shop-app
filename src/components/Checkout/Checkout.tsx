@@ -4,6 +4,7 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
+import { Button } from "../Button";
 
 export const Checkout = () => {
   const stripe = useStripe();
@@ -46,9 +47,9 @@ export const Checkout = () => {
   return (
     <form onSubmit={handleSubmit}>
       <PaymentElement />
-      <button type="submit" disabled={!stripe || !elements}>
+      <Button type="submit" disabled={!stripe || !elements}>
         Pay
-      </button>
+      </Button>
       {/* Show error message to your customers */}
       {errorMessage && <div>{errorMessage}</div>}
     </form>

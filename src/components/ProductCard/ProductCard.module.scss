@@ -10,7 +10,6 @@
     grid-template-rows: auto repeat(2, 1fr) auto;
     align-self: center;
     margin-bottom: 36px;
-
     grid-template-areas:
         "image image"
         "name price"
@@ -34,12 +33,10 @@
         grid-area: buy;
         display: flex;
         justify-content: space-around;
-
         padding: 10px;
         color: white;
         border-radius: 5px;
         background-color: rgb(216, 215, 215);
-        cursor: pointer;
         justify-content: space-around;
 
         button {
@@ -57,7 +54,7 @@
         :nth-child(1) {
             color: white;
             width: 80px;
-            background-color: rgb(243, 43, 76);
+            background-color: var(--red);
         }
 
         :nth-child(2) {
