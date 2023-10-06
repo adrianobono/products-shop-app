@@ -5,6 +5,16 @@
     flex-direction: column;
     align-content: center;
     width: 100%;
+
+    button:nth-child(2) {
+        width: 100px;
+        color: white;
+        margin-left: 2.5rem;
+        font-weight: 700;
+        border-radius: 5px;
+        height: 30px;
+        background-color: rgb(15, 168, 168);
+    }
 }
 
 .list__title {

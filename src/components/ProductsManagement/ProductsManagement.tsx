@@ -27,7 +27,12 @@ export const ProductMangement = () => {
   return (
     <div className={styles["list__container"]}>
       <div className={styles["list__title"]}>Products Management</div>
-      <Button onClick={() => handleNewProduct()}>New product</Button>
+      <Button
+        data-testid="create-new-product"
+        onClick={() => handleNewProduct()}
+      >
+        New product
+      </Button>
       <ul className={styles["list__wrapper"]}>
         <li className={styles["list__header"]}>
           <span>Id</span>
