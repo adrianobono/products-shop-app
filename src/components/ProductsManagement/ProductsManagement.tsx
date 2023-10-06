@@ -5,24 +5,37 @@ import { BiPencil, BiTrash } from "react-icons/bi";
 import { useState, useEffect } from "react";
 import { EditModal } from "../EditModal";
 import { ProductsDTO } from "../../types/dto";
+import {
+  deleteProduct,
+  getProducts,
+  useFetchProducts,
+} from "../../services/DataProductsSevices";
 
 export const ProductsManagement = () => {
   const [edit, setEdit] = useState(false);
-  const { products, setEditId } = useCartStore();
+  const { products, setEditId, setProducts } = useCartStore();
 
-  const handleEditModal = (index: number, item: ProductsDTO) => {
+  const handleEditModal = (index: number) => {
     setEditId(index);
     setEdit(!edit);
+  };
+
+  const handleDeleteModal = (id: number) => {
+    if (window.confirm("Confirm procuct exclusion?") == true) {
+      Promise.all([deleteProduct(id)])
+        .then(() => {
+          return getProducts();
+        })
+        .then((products) => {
+          setProducts(products);
+        });
+    }
   };
 
   const handleNewProduct = () => {
     setEditId(-2);
     setEdit(!edit);
   };
-
-  useEffect(() => {
-    console.log(products);
-  }, [products]);
 
   return (
     <div className={styles["list__container"]}>
@@ -48,11 +61,17 @@ export const ProductsManagement = () => {
             <span>{item.title}</span>
             <span>{item.value}</span>
             <span>
-              <Button onClick={() => handleEditModal(index, item)}>
+              <Button
+                data-testid={`edit-product-btn${item.id}`}
+                onClick={() => handleEditModal(index)}
+              >
                 <BiPencil size={20} />
               </Button>
               <Button>
-                <BiTrash size={20} />
+                <BiTrash
+                  size={20}
+                  onClick={() => handleDeleteModal(item.id as number)}
+                />
               </Button>
             </span>
           </li>

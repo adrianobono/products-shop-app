@@ -43,10 +43,14 @@ function CartList() {
         })}
       </ul>
       <div className={styles["total"]}>
-        <Button data-testid="buy" className={styles["buy"]}>
+        <Button
+          data-testid="buy"
+          onClick={() => setBuy(true)}
+          className={styles["buy"]}
+        >
           Order
         </Button>
-        <span>Order Total: {(total / 100).toFixed(2)}</span>
+        <span> Total: {(total / 100).toFixed(2)}</span>
       </div>
       {cart.length > 0 && buy && (
         <div className={styles["checkout"]}>

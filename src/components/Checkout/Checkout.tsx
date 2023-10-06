@@ -4,7 +4,9 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
+import styles from "./Checkout.module.scss";
 import { Button } from "../Button";
+import { BiSolidCartAdd } from "react-icons/bi";
 
 export const Checkout = () => {
   const stripe = useStripe();
@@ -45,13 +47,15 @@ export const Checkout = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <PaymentElement />
+    <div className={styles["wrapper"]}>
+      <form onSubmit={handleSubmit}>
+        <PaymentElement />
+        {/* Show error message to your customers */}
+        {errorMessage && <div>{errorMessage}</div>}
+      </form>
       <Button type="submit" disabled={!stripe || !elements}>
-        Pay
+        Pay <BiSolidCartAdd size={32} />
       </Button>
-      {/* Show error message to your customers */}
-      {errorMessage && <div>{errorMessage}</div>}
-    </form>
+    </div>
   );
 };

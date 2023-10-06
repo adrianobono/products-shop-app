@@ -67,7 +67,7 @@ export const EditModal: React.FC<ModalProps> = ({
             <BiWindowClose size={32} />
           </Button>
         )}
-        {isModalOpen && editId !== -1 && (
+        {isModalOpen && editId !== -1 && editId !== -3 && (
           <EditForm item={editId < 0 ? products[0] : products[editId]} />
         )}
         {/* return/show internal content of modal if exists*/}

@@ -1,6 +1,6 @@
 import styles from "./Loading.module.scss";
 
-const Loading = () => {
+export const Loading = () => {
   return (
     <div className={styles["loading__ring"]}>
       <div></div>
