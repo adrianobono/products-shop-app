@@ -23,10 +23,12 @@ export const EditModal: React.FC<ModalProps> = ({
   const modalRef = useRef<HTMLDialogElement | null>(null);
 
   useEffect(() => {
+    // - 1 used as state for no edit product
     editId === -1 && handleCloseModal();
   }, [editId]);
 
   const handleCloseModal = () => {
+    // exit of modal after click
     if (onClose) {
       onClose();
     }
@@ -34,12 +36,14 @@ export const EditModal: React.FC<ModalProps> = ({
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDialogElement>) => {
+    // close modal when escape key is pressed
     if (event.key === "Escape") {
       handleCloseModal();
     }
   };
 
   useEffect(() => {
+    // show modal
     setModalOpen(isOpen);
   }, [isOpen]);
 
@@ -66,6 +70,8 @@ export const EditModal: React.FC<ModalProps> = ({
         {isModalOpen && editId !== -1 && (
           <EditForm item={editId < 0 ? products[0] : products[editId]} />
         )}
+        {/* return/show internal content of modal if exists*/}
+        {editId === -2 && children}
       </div>
     </dialog>
   );
