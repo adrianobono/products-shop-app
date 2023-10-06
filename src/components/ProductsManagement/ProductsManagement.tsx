@@ -2,14 +2,15 @@ import { useCartStore } from "../../store/CartStore";
 import { Button } from "../Button";
 import styles from "./ProductsManagement.module.scss";
 import { BiPencil, BiTrash } from "react-icons/bi";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { EditModal } from "../EditModal";
+import { ProductsDTO } from "../../types/dto";
 
 export const ProductMangement = () => {
   const [edit, setEdit] = useState(false);
   const { products, setEditId } = useCartStore();
 
-  const handleEditModal = (index: number) => {
+  const handleEditModal = (index: number, item: ProductsDTO) => {
     setEditId(index);
     setEdit(!edit);
   };
@@ -18,9 +19,14 @@ export const ProductMangement = () => {
     setEditId(-2);
     setEdit(!edit);
   };
+
+  useEffect(() => {
+    console.log(products);
+  }, [products]);
+
   return (
-    <div className={styles["wrapper"]}>
-      <div className={styles["title"]}>Products Management</div>
+    <div className={styles["list__container"]}>
+      <div className={styles["list__title"]}>Products Management</div>
       <Button onClick={() => handleNewProduct()}>New product</Button>
       <ul className={styles["list__wrapper"]}>
         <li className={styles["list__header"]}>
@@ -35,7 +41,7 @@ export const ProductMangement = () => {
             <span>{item.title}</span>
             <span>{item.value}</span>
             <span>
-              <Button onClick={() => handleEditModal(index)}>
+              <Button onClick={() => handleEditModal(index, item)}>
                 <BiPencil size={20} />
               </Button>
               <Button>

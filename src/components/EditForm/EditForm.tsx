@@ -1,5 +1,9 @@
 import { useForm } from "react-hook-form";
-import { patchProduct, postProduct } from "../../services/DataProductsSevices";
+import {
+  patchProduct,
+  postProduct,
+  getProducts,
+} from "../../services/DataProductsSevices";
 import { ProductsDTO } from "../../types/dto";
 import { useCartStore } from "../../store/CartStore";
 import { useEffect } from "react";
@@ -10,13 +14,16 @@ interface EditFormProps {
 }
 
 export const EditForm = ({ item }: EditFormProps) => {
-  const { id, title, value, description, srcImage, altImage, stock } = item;
-  const { setEditId, editId } = useCartStore();
+  const {
+    setEditId,
+    editId,
+    setProducts,
+    editItem: ProductsDTO,
+  } = useCartStore();
   const {
     register,
     handleSubmit,
     reset,
-    resetField,
     formState: { errors, isDirty, isValid },
   } = useForm({
     values: item,
@@ -43,15 +50,25 @@ export const EditForm = ({ item }: EditFormProps) => {
         className={styles["list__form-edit"]}
         onSubmit={handleSubmit((data) => {
           if (editId < -1) {
-            postProduct({ ...data }).then(() => {
-              setEditId(-1);
-              alert("New product added with success...");
-            });
+            postProduct({ ...data })
+              .then((product) => {
+                setEditId(-1);
+              })
+              .then(() => {
+                Promise.all([getProducts()]).then((items) => {
+                  setProducts(items[0]);
+                });
+              });
           } else {
-            patchProduct(id, { ...data }).then(() => {
-              setEditId(-1);
-              alert("Data updated with success...");
-            });
+            patchProduct(item.id, { ...data })
+              .then(() => {
+                setEditId(-1);
+              })
+              .then(() => {
+                Promise.all([getProducts()]).then((items) => {
+                  setProducts(items[0]);
+                });
+              });
           }
         })}
       >

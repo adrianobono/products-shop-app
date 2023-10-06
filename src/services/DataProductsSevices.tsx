@@ -3,7 +3,7 @@ import { productsApi } from "../api";
 import { ProductsDTO } from "../types/dto";
 import { useQuery } from "@tanstack/react-query";
 
-async function getProducts() {
+export async function getProducts() {
   const { data } = await productsApi.get("/products");
   return data;
 }
