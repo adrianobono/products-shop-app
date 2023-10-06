@@ -1,0 +1,27 @@
+.cart__wrapper {
+    margin: 60px auto;
+    display: flex;
+    flex-direction: column;
+    width: 70vw;
+    background-color: rgb(202, 202, 202);
+
+    :last-child {
+        margin: 0 auto;
+    }
+}
+
+.cart__list {
+    display: flex;
+    flex-direction: column;
+}
+
+.cart__item {
+    width: 100%;
+    text-decoration: none;
+}
+
+@media only screen and (max-width: 480px) {
+    .cart__wrapper {
+        width: 90vw;
+    }
+}
