@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { BiWindowClose } from "react-icons/bi";
 import { Button } from "../Button";
-import styles from "./EditModal.module.scss";
 import { useCartStore } from "../../store/CartStore";
 import { EditForm } from "../EditForm";
+import styles from "./EditModal.module.scss";
 
 interface ModalProps {
   isOpen: boolean;

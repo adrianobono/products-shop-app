@@ -34,7 +34,7 @@ export const ProductCard = ({ product, products }: ProductsListProps) => {
       <span>${product.value}</span>
       <span className={styles["list__buttons-shop"]}>
         <Button
-          data-testid="button-cart-remove"
+          data-testid={`button-cart-remove${product.id}`}
           disabled={itemCart[0]?.quantity === 0 || !itemCart[0]}
           onClick={() => handleSetQuantity(itemCart[0]?.quantity, -1)}
         >
@@ -42,7 +42,7 @@ export const ProductCard = ({ product, products }: ProductsListProps) => {
         </Button>
         <span>{itemCart[0]?.quantity | 0}</span>
         <Button
-          data-testid="button-cart-add"
+          data-testid={`button-cart-add${product.id}`}
           disabled={product.quantity >= product.stock}
           onClick={() => handleSetQuantity(itemCart[0]?.quantity, 1)}
         >

@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { EditModal } from "../EditModal";
 import { ProductsDTO } from "../../types/dto";
 
-export const ProductMangement = () => {
+export const ProductsManagement = () => {
   const [edit, setEdit] = useState(false);
   const { products, setEditId } = useCartStore();
 
@@ -26,7 +26,9 @@ export const ProductMangement = () => {
 
   return (
     <div className={styles["list__container"]}>
-      <div className={styles["list__title"]}>Products Management</div>
+      <div data-testid="title" className={styles["list__title"]}>
+        Products Management
+      </div>
       <Button
         data-testid="create-new-product"
         onClick={() => handleNewProduct()}

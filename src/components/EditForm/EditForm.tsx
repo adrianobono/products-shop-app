@@ -70,21 +70,28 @@ export const EditForm = ({ item }: EditFormProps) => {
         <label htmlFor="title">Product Title</label>
         <input
           id="title"
+          data-testid="input-title"
           {...register("title", { required: true, minLength: 2 })}
           placeholder="Product title"
           required
         />
         {errors.title && errors.title.type === "minLength" && (
-          <span role="alert">Text minimal length is 2.</span>
+          <span data-testid="title-error" role="alert">
+            Text minimal length is 2.
+          </span>
         )}
 
         <label htmlFor="value">Product price</label>
         <input
           id="value"
-          {...register("value")}
+          {...register("value", { min: 0.01 })}
           type="number"
+          min={0}
           placeholder="Product price"
           required
+          {...(errors.value && errors.value.type === "min" && (
+            <span role="alert">Value not acepted.</span>
+          ))}
         />
 
         <label htmlFor="value">Product stokck</label>
@@ -119,7 +126,12 @@ export const EditForm = ({ item }: EditFormProps) => {
           placeholder="Product Description"
         />
 
-        <input type="submit" disabled={!isDirty || !isValid} />
+        <input
+          data-testid="send-btn"
+          type="submit"
+          value="Send"
+          disabled={!isDirty || !isValid}
+        />
       </form>
     </div>
   );
