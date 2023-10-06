@@ -29,8 +29,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --transformIgnorePatterns '/src/(?!api)/'",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "jest":{
+    "transformIgnorePatterns": ["'/src/(?!api)/'"]
   },
  
   "eslintConfig": {
