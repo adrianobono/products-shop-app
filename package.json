@@ -32,6 +32,10 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "jest":{
+    "transformIgnorePatterns": ["'/src/(?!api)/'"]
+  },
+ 
   "eslintConfig": {
     "extends": [
       "react-app",

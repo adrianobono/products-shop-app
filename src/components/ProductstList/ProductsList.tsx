@@ -1,5 +1,5 @@
-import { ProductCard } from "../ProductCard";
 import { useFetchProducts } from "../../services/DataProductsSevices";
+import { ProductCard } from "../ProductCard";
 import Loading from "../Loading/Loading";
 import styles from "./ProductsList.module.scss";
 

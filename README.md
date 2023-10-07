@@ -1,6 +1,32 @@
 # Product Shop App
 
-### Checklist Specifications
+- This project is a simple MVP Shop Cart
+
+- Install and use: 
+
+    1) Using a command terminal type this clone command: git clone https://github.com/adrianobono/products-shop-app.git and press enter; 
+
+    2) After clone executed type: cd products-shop-app/ and press enter to access the project folder;
+
+    3) In the project folder type: yarn install and press Enter;
+    
+    4) Then run the project typing: yarn start  and press Enter;
+
+    5) If everthing is ok the project will be load automatically in your defaut browser at port 3000 (<http://localhost:3000>)
+
+
+### Info:
+
+- The project needs a internet conectio to access the online API.
+
+#### Future improvements
+
+- A better Nav Menu
+- A shop layout for first page
+- Finalize the cart shop
+
+
+### Development checklist specifications
 
 - [X] Application developed using React.
 
@@ -14,7 +40,7 @@
 
 - [X] Application must use React-Query to share data between components via cache, hydrate data,control states with queries, loading, refetch, invalidQueries
 
-- [ ] Application must have at least one unit test for each component.
+- [X] Application must have at least one unit test for each component.
 
 - [X] Application must have an API to obtain and update product data.
 
@@ -22,13 +48,14 @@
 
 ### Tools used for development
 
-- NodeJs
+- ReactJs 18.2.0
+- NodeJs 16.0.2
 - Git Bash
 - Visual Studio Code
 - Yarn
 - Postman
 
-### History of development
+### Initial History of development
 
 1) Created a react app (CRA) using TypeScript:
 
@@ -59,4 +86,4 @@
 
 10) Finalized api evaluate, added initial list on product page and simple routes to pages
 
-11) Updated master branch and checkout to new branch to implement components and store
+11) Updated master branch and checkout to new branch to implement components and requirements of

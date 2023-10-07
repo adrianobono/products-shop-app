@@ -1,15 +1,26 @@
-.wrapper {
+.list__container {
     display: flex;
-    margin-top: 60px;
     flex-wrap: wrap;
     flex-direction: column;
     align-content: center;
-    width: 100%;
+    width: 80%;
+    margin: 80px auto;
+
+    button:nth-child(2) {
+        width: 100px;
+        color: white;
+        margin-left: 2.5rem;
+        font-weight: 700;
+        border-radius: 5px;
+        padding: 0.6rem;
+        background-color: rgb(3, 116, 245);
+    }
 }
 
-.title {
+.list__title {
     font-size: 2rem;
     color: black;
+    font-weight: 600;
     text-align: center;
     margin-bottom: 30px;
 }
@@ -68,7 +79,7 @@
         }
 
         button:last-child {
-            background-color: rgb(231, 18, 18);
+            background-color: var(--red);
         }
     }
 
@@ -96,8 +107,14 @@
             border: 0;
             border-radius: 5px;
             color: white;
-            background-color: rgb(34, 139, 2);
+            background-color: var(--green);
             width: 50%;
         }
+    }
+}
+
+@media only screen and (max-width: 72px) {
+    .list__container {
+        width: 100%;
     }
 }

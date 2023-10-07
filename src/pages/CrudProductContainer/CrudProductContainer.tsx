@@ -1,9 +1,9 @@
-import { ProductMangement } from "../../components/ProductsManagement";
+import { ProductsManagement } from "../../components/ProductsManagement";
 
 function CrudProductContainer() {
   return (
     <section>
-      <ProductMangement />
+      <ProductsManagement />
     </section>
   );
 }

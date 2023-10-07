@@ -10,7 +10,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         type="button"
-        className={styles["products-button"]}
+        className={styles["products__button"]}
         {...props}
         ref={ref}
       >

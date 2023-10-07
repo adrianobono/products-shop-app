@@ -1,8 +1,5 @@
 import { persist } from "zustand/middleware";
-import { create } from "zustand";
-import { devtools } from "zustand/middleware";
-import { immer } from "zustand/middleware/immer";
-import { useFetchProducts } from "../services/DataProductsSevices";
+import { create, StoreApi } from "zustand";
 
 type Item = {
   id?: number;
@@ -62,6 +59,7 @@ export const useCartStore = create(
   persist<CartStore>(
     (set) => ({
       editId: 0,
+      editItem: {},
       cart: [],
       setEditId: (id) => set((state) => ({ editId: (state.editId = id) })),
       products: [],
