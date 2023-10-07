@@ -3,18 +3,23 @@ import {
   PaymentElement,
   useStripe,
   useElements,
+  CardElement,
 } from "@stripe/react-stripe-js";
 import styles from "./Checkout.module.scss";
 import { Button } from "../Button";
 import { BiSolidCartAdd } from "react-icons/bi";
+import { useCartStore } from "../../store/CartStore";
 
 export const Checkout = () => {
   const stripe = useStripe();
   const elements = useElements();
+  const { setCart } = useCartStore();
 
   const [errorMessage, setErrorMessage] = useState(null);
 
   const handleSubmit = async (event: any) => {
+    // just a mock to show payment
+
     event.preventDefault();
 
     if (elements == null) {

@@ -25,9 +25,16 @@
 .nav-bar__item {
     display: block;
     text-decoration: none;
+    display: flex;
+    column-gap: 15px;
     margin-top: -8px;
     a {
         text-decoration: none;
         color: white;
+        cursor: pointer;
     }
+
+.menu{
+    
+}
 }

@@ -4,7 +4,7 @@ import { Button } from "./Button";
 describe("Button", () => {
   const label = "Add to cart";
 
-  it("Should render a button element an check specific label", () => {
+  it("Should render a button component with a specific label", () => {
     const { container, getByText } = render(<Button>{label}</Button>);
 
     expect(container).toBeInTheDocument();

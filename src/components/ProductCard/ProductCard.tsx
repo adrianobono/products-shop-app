@@ -31,7 +31,7 @@ export const ProductCard = ({ product, products }: ProductsListProps) => {
     <li className={styles["list__item"]} key={product.id}>
       <img src={product.srcImage} alt={product.altImage} />
       <p>{product.title}</p>
-      <span>${product.value}</span>
+      <span>${Number(product.value).toFixed(2)}</span>
       <span className={styles["list__buttons-shop"]}>
         <Button
           data-testid={`button-cart-remove${product.id}`}
