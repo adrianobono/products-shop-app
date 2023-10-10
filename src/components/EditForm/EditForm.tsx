@@ -1,20 +1,19 @@
 import { useForm } from "react-hook-form";
-import {
-  patchProduct,
-  postProduct,
-  getProducts,
-} from "../../services/DataProductsSevices";
+import { patchProduct, postProduct } from "../../services/DataProductsSevices";
 import { ProductsDTO } from "../../types/dto";
 import { useCartStore } from "../../store/CartStore";
 import { useEffect } from "react";
 import styles from "./EditForm.module.scss";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface EditFormProps {
   item: ProductsDTO;
 }
 
 export const EditForm = ({ item }: EditFormProps) => {
-  const { setEditId, editId, setProducts } = useCartStore();
+  const queryClient = useQueryClient();
+
+  const { setEditId, editId } = useCartStore();
   const {
     register,
     handleSubmit,
@@ -34,6 +33,20 @@ export const EditForm = ({ item }: EditFormProps) => {
     stock: 0,
   };
 
+  const mutationCreate = useMutation({
+    mutationFn: postProduct,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["products"] });
+    },
+  });
+
+  const mutationPatch = useMutation({
+    mutationFn: patchProduct,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["products"] });
+    },
+  });
+
   useEffect(() => {
     editId < 0 && reset(clearItem);
   }, [editId]);
@@ -44,27 +57,14 @@ export const EditForm = ({ item }: EditFormProps) => {
         id="editForm"
         className={styles["list__form-edit"]}
         onSubmit={handleSubmit((data) => {
+          setEditId(-1);
           if (editId < -1) {
-            postProduct({ ...data })
-              .then((product) => {
-                setEditId(-1);
-              })
-              .then(() => {
-                Promise.all([getProducts()]).then((items) => {
-                  setProducts(items[0]);
-                });
-              });
+            mutationCreate.mutate(data);
           } else {
-            patchProduct(item.id, { ...data })
-              .then(() => {
-                setEditId(-1);
-              })
-              .then(() => {
-                Promise.all([getProducts()]).then((items) => {
-                  setProducts(items[0]);
-                });
-              });
+            data.id = item.id;
+            mutationPatch.mutate(data);
           }
+          setEditId(-1);
         })}
       >
         <label htmlFor="title">Product Title</label>

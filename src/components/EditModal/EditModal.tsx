@@ -4,6 +4,7 @@ import { Button } from "../Button";
 import { useCartStore } from "../../store/CartStore";
 import { EditForm } from "../EditForm";
 import styles from "./EditModal.module.scss";
+import { useFetchProducts } from "../../services/DataProductsSevices";
 
 interface ModalProps {
   isOpen: boolean;
@@ -19,6 +20,7 @@ export const EditModal: React.FC<ModalProps> = ({
   children,
 }) => {
   const { editId, products } = useCartStore();
+  const { data: productsList } = useFetchProducts();
   const [isModalOpen, setModalOpen] = useState(isOpen);
   const modalRef = useRef<HTMLDialogElement | null>(null);
 
@@ -68,7 +70,7 @@ export const EditModal: React.FC<ModalProps> = ({
           </Button>
         )}
         {isModalOpen && editId !== -1 && editId !== -3 && (
-          <EditForm item={editId < 0 ? products[0] : products[editId]} />
+          <EditForm item={editId < 0 ? products[0] : productsList[editId]} />
         )}
         {/* return/show internal content of modal if exists*/}
         {editId === -3 && children}

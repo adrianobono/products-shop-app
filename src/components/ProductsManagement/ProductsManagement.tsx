@@ -2,37 +2,40 @@ import { useCartStore } from "../../store/CartStore";
 import { Button } from "../Button";
 import styles from "./ProductsManagement.module.scss";
 import { BiPencil, BiTrash } from "react-icons/bi";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { EditModal } from "../EditModal";
-import { ProductsDTO } from "../../types/dto";
+
 import {
   deleteProduct,
   getProducts,
   useFetchProducts,
 } from "../../services/DataProductsSevices";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const ProductsManagement = () => {
+  const queryClient = useQueryClient();
   const [edit, setEdit] = useState(false);
-  const { products, setEditId, setProducts } = useCartStore();
+  const { setEditId, setProducts } = useCartStore();
+  const { data: productsList } = useFetchProducts();
 
   const handleEditModal = (index: number) => {
     setEditId(index);
     setEdit(!edit);
   };
 
-  const handleDeleteModal = (id: number) => {
-    if (window.confirm("Confirm procuct exclusion?") == true) {
-      Promise.all([deleteProduct(id)])
-        .then(() => {
-          return getProducts();
-        })
-        .then((products) => {
-          setProducts(products);
-        });
-    }
+  const mutationDelete = useMutation({
+    mutationFn: deleteProduct,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["products"] });
+    },
+  });
+
+  const handleDeleteModal = (item: any) => {
+    if (window.confirm("Confirm procuct exclusion?") == true)
+      mutationDelete.mutate(item);
   };
 
-  const handleNewProduct = () => {
+   const handleNewProduct = () => {
     setEditId(-2);
     setEdit(!edit);
   };
@@ -55,11 +58,11 @@ export const ProductsManagement = () => {
           <span>Price</span>
           <span>Actions</span>
         </li>
-        {products.map((item, index) => (
+        {productsList?.map((item: any, index: number) => (
           <li key={item.id} className={styles["list__item"]}>
             <span>{item.id}</span>
             <span>{item.title}</span>
-            <span>{item.value}</span>
+            <span>{Number(item.value).toFixed(2)}</span>
             <span>
               <Button
                 data-testid={`edit-product-btn${item.id}`}
@@ -68,10 +71,7 @@ export const ProductsManagement = () => {
                 <BiPencil size={20} />
               </Button>
               <Button>
-                <BiTrash
-                  size={20}
-                  onClick={() => handleDeleteModal(item.id as number)}
-                />
+                <BiTrash size={20} onClick={(e) => handleDeleteModal(item)} />
               </Button>
             </span>
           </li>
