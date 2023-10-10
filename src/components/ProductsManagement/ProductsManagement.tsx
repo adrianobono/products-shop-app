@@ -2,9 +2,9 @@ import { useCartStore } from "../../store/CartStore";
 import { Button } from "../Button";
 import styles from "./ProductsManagement.module.scss";
 import { BiPencil, BiTrash } from "react-icons/bi";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { EditModal } from "../EditModal";
-import { ProductsDTO } from "../../types/dto";
+
 import {
   deleteProduct,
   getProducts,
@@ -13,7 +13,8 @@ import {
 
 export const ProductsManagement = () => {
   const [edit, setEdit] = useState(false);
-  const { products, setEditId, setProducts } = useCartStore();
+  const { setEditId, setProducts } = useCartStore();
+  const { data: productsList } = useFetchProducts();
 
   const handleEditModal = (index: number) => {
     setEditId(index);
@@ -55,11 +56,11 @@ export const ProductsManagement = () => {
           <span>Price</span>
           <span>Actions</span>
         </li>
-        {products.map((item, index) => (
+        {productsList?.map((item: any, index: number) => (
           <li key={item.id} className={styles["list__item"]}>
             <span>{item.id}</span>
             <span>{item.title}</span>
-            <span>{item.value}</span>
+            <span>{Number(item.value).toFixed(2)}</span>
             <span>
               <Button
                 data-testid={`edit-product-btn${item.id}`}

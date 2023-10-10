@@ -23,10 +23,14 @@ export const deleteProduct = async (id: any): Promise<any> => {
   }
 };
 
-export const patchProduct = async (id: any, product: any): Promise<any> => {
+//export const patchProduct = async (id: any, product: any): Promise<any> => {
+export const patchProduct = async (product: any): Promise<any> => {
   product.value = Number(product.value);
   try {
-    const { data } = await productsApi.patch(`/products/${id}`, product);
+    const { data } = await productsApi.patch(
+      `/products/${product.id}`,
+      product
+    );
     return data;
   } catch (error) {
     const err = error as AxiosError;
