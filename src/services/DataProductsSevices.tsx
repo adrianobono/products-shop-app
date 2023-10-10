@@ -12,9 +12,9 @@ export function useFetchProducts() {
   return useQuery(["products"], () => getProducts());
 }
 
-export const deleteProduct = async (id: any): Promise<any> => {
+export const deleteProduct = async (product: any): Promise<any> => {
   try {
-    const { data } = await productsApi.delete(`/products/${id}`);
+    const { data } = await productsApi.delete(`/products/${product.id}`);
     return data;
   } catch (error) {
     const err = error as AxiosError;
@@ -23,7 +23,6 @@ export const deleteProduct = async (id: any): Promise<any> => {
   }
 };
 
-//export const patchProduct = async (id: any, product: any): Promise<any> => {
 export const patchProduct = async (product: any): Promise<any> => {
   product.value = Number(product.value);
   try {

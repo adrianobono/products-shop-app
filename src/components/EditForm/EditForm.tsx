@@ -60,12 +60,11 @@ export const EditForm = ({ item }: EditFormProps) => {
           setEditId(-1);
           if (editId < -1) {
             mutationCreate.mutate(data);
-            setEditId(-1);
           } else {
             data.id = item.id;
             mutationPatch.mutate(data);
-            setEditId(-1);
           }
+          setEditId(-1);
         })}
       >
         <label htmlFor="title">Product Title</label>
