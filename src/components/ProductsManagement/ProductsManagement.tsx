@@ -51,7 +51,7 @@ export const ProductsManagement = () => {
       >
         New product
       </Button>
-      <ul className={styles["list__wrapper"]}>
+      <ul className={styles["list__wrapper"]}>p
         <li className={styles["list__header"]}>
           <span>Id</span>
           <span>Title</span>

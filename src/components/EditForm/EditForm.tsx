@@ -21,6 +21,7 @@ export const EditForm = ({ item }: EditFormProps) => {
     formState: { errors, isDirty, isValid },
   } = useForm({
     values: item,
+    mode: "onChange",
   });
   const clearItem = {
     id: -1,
@@ -84,47 +85,65 @@ export const EditForm = ({ item }: EditFormProps) => {
         <label htmlFor="value">Product price</label>
         <input
           id="value"
-          {...register("value", { min: 0.01 })}
+          {...register("value", { required: true, min: 0.5 })}
           type="number"
-          min={0}
+          min={0.5}
+          step="0.01"
           placeholder="Product price"
           required
-          {...(errors.value && errors.value.type === "min" && (
-            <span role="alert">Value not acepted.</span>
-          ))}
         />
+        {errors.value && errors.value.type === "min" && (
+          <span role="alert">Value not acepted.</span>
+        )}
+        {errors.value && errors.value.type === "required" && (
+          <span role="alert">Empty value not acepted.</span>
+        )}
 
         <label htmlFor="value">Product stokck</label>
         <input
-          id="value"
-          {...register("stock")}
+          id="stock"
+          {...register("stock", { required: true })}
           type="number"
+          min={0}
           placeholder="Product stock"
           required
         />
+        {errors.stock && errors.stock.type === "required" && (
+          <span role="alert">Empty value not acepted.</span>
+        )}
+
         <label htmlFor="srcImage">Product image url</label>
         <input
           pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)"
           id="srcImage"
-          {...register("srcImage")}
+          {...register("srcImage", { required: true })}
           placeholder="Product image url"
           required
         />
+        {errors.srcImage && errors.srcImage.type === "required" && (
+          <span role="alert">Empty value not acepted.</span>
+        )}
 
         <label htmlFor="altImage">Product image alt </label>
         <input
           id="altImage"
-          {...register("altImage")}
+          {...register("altImage", { required: true })}
           placeholder="Product image description"
           required
         />
+        {errors.altImage && errors.altImage.type === "required" && (
+          <span role="alert">Empty value not acepted.</span>
+        )}
 
         <label htmlFor="desciption">Product description</label>
         <textarea
           id="description"
-          {...register("description")}
+          {...register("description", { required: true })}
           placeholder="Product Description"
         />
+        {errors.description && errors.description.type === "required" && (
+          <span role="alert">Empty value not acepted.</span>
+        )}
 
         <input
           data-testid="send-btn"

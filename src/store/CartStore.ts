@@ -14,13 +14,14 @@ type Item = {
 
 type CartStore = {
   products: Item[];
-  cart: Item[];
+  cart: Item[] | [];
   editId: number;
   setEditId: (id: number) => void;
   setProducts: (items: Item[]) => void;
   addToCart: (item: Item) => void;
   removeFromCart: (item: Item) => void;
   setCart: (item: Item) => void;
+  resetCart: () => void;
 };
 
 const updateCard = (cart: Item[], product: Item, value: number) => {
@@ -63,6 +64,7 @@ export const useCartStore = create(
       cart: [],
       setEditId: (id) => set((state) => ({ editId: (state.editId = id) })),
       products: [],
+      resetCart: () => set((state) => ({ cart: (state.cart = []) })),
       setCart: (item) => set((state) => setItemCart(state.cart, item)),
       addToCart: (item) => set((state) => updateCard(state.cart, item, 1)),
       removeFromCart: (item) =>
