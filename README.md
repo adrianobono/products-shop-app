@@ -14,10 +14,13 @@
 
     5) If everthing is ok the project will be load automatically in your defaut browser at port 3000 (<http://localhost:3000>)
 
+### Run tests:
+    In a terminal using the project path type: yarn test and press enter;
 
 ### Info:
 
 - The project needs a internet conectio to access the online API.
+- On checkout this mock credit card number: 4242 4242 4242 4242
 
 #### Future improvements
 
